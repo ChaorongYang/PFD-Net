@@ -5,4 +5,4 @@ Code is coming soon if paper is accepted.
 
 ## Experiments
 ### Quantitative results on Kvasir-SEG and CVC-ClinicDB.
-![result][https://github.com/ChaorongYang/PFD-Net/blob/main/Results/Fig1.png]
+![result]https://github.com/ChaorongYang/PFD-Net/blob/main/Results/Fig1.png
