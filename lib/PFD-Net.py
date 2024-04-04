@@ -7,8 +7,6 @@ import numpy as np
 from collections import OrderedDict
 from mmcv.ops import DeformConv2dPack as DCN
 
-import math
-#pvt 侧面输出结合FFC代码
 def get_activation(activation_type):
     activation_type = activation_type.lower()
     if hasattr(nn, activation_type):
@@ -460,7 +458,6 @@ class PFD_Net(nn.Module):
         f3 = self.FB3(x3)
         f4 = self.FB4(x4)
 
-        #通道数目减少
         f2 = self.c2(f2)
         f3 = self.c3(f3)
         f4 = self.c4(f4)
