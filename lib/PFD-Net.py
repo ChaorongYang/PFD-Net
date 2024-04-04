@@ -313,11 +313,11 @@ class CLFB(nn.Module):
             nn.Conv2d(out_channel, out_channel, 3, padding=5, dilation=5)
         )
 
-        self.branch4 = nn.Sequential(
+        self.branch3 = nn.Sequential(
             nn.Conv2d(2*in_channel, out_channel, 1),
         )
         self.deform = DCN(out_channel, out_channel, kernel_size=3, stride=1, padding=1)
-        self.branch4_1 = nn.Sequential(
+        self.branch3_1 = nn.Sequential(
             nn.Conv2d(out_channel, out_channel, 3, padding=1, dilation=1),
             nn.BatchNorm2d(out_channel),
         )
@@ -334,7 +334,7 @@ class CLFB(nn.Module):
         x0 = self.branch0(x)
         x1 = self.branch1(x)
         x2 = self.branch2(x)
-        x4 = self.branch4_1(self.deform(self.branch4(x)))
+        x4 = self.branch3_1(self.deform(self.branch3(x)))
 
         x_cat = self.conv_cat(torch.cat((x0, x1, x2,x4), 1))
 
