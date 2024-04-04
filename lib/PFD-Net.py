@@ -279,7 +279,7 @@ class DDR(nn.Module):
         x0 = self.conv3_1(xc[0] + xc[1])
         x1 = self.dconv5_1(xc[1] + x0 + xc[2])
         x2 = self.dconv7_1(xc[2] + x1 + xc[3])
-        x3 = self.deform(xc[3] + x)
+        x3 = self.deform(xc[3] + x2)
         x = self.conv1_2(torch.cat((x0, x1, x2, x3), dim=1))
 
 
