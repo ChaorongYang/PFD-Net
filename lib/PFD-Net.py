@@ -250,9 +250,9 @@ class Conv1x1(nn.Module):
 
         return x
 
-class CAM(nn.Module):
+class DDR(nn.Module):
     def __init__(self, channel):
-        super(CAM, self).__init__()
+        super(DDR, self).__init__()
 
         self.c1 = Conv2D(channel, channel, kernel_size=3, padding=1)
 
@@ -292,7 +292,7 @@ class CAM(nn.Module):
 
         return x
 
-class multiconv(nn.Module):
+class CLFB(nn.Module):
     def __init__(self, in_channel, out_channel):
         super().__init__()
         self.relu = nn.ReLU(True)
@@ -413,16 +413,16 @@ class PFD_Net(nn.Module):
         self.c3   = nn.Conv2d(320, 64, 1, bias=False)
         self.c4   = nn.Conv2d(512, 64, 1, bias=False)
 
-        self.q1 = CAM(64)
-        self.q2 = CAM(64)
-        self.q3 = CAM(64)
-        self.q4 = CAM(64)
+        self.q1 = DDR(64)
+        self.q2 = DDR(64)
+        self.q3 = DDR(64)
+        self.q4 = DDR(64)
 
         self.d1 = decoder_block([64, 64], 64)
         self.d2 = decoder_block([64, 64], 64)
         self.d3 = decoder_block([64, 64], 64)
 
-        self.w1 = multiconv(64,64)
+        self.w1 = CLFB(64,64)
 
         self.out1 = nn.Conv2d(64, n_classes, 1)
         self.out2 = nn.Conv2d(64, n_classes, 1)
